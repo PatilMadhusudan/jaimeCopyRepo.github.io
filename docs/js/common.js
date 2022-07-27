@@ -360,12 +360,7 @@ function loadGLTF(url){
 
 function loadObj(baseURL, geometry){
 	return new Promise(function(resolve, reject){
-		const mtlLoader = new THREE.MTLLoader()
-		mtlLoader.setPath(baseURL)
-		const mtlName = geometry.split('.')[geometry.split(':').length - 1] + '.mtl'
-		mtlLoader.load(mtlName, (materials) => {
-			materials.preload()
-			let objLoader = new THREE.OBJLoader()
+		let objLoader = new THREE.OBJLoader()
 			objLoader.setMaterials(materials)
 			objLoader.setPath(baseURL)
 			objLoader.load(geometry, (obj) => {
@@ -374,7 +369,6 @@ function loadObj(baseURL, geometry){
 				console.error('Failed to load obj', ...params)
 				reject(...params)
 			})
-		})
 	})
 }
 
