@@ -359,7 +359,8 @@ function loadGLTF(url){
 }
 
 function loadObj(baseURL, geometry){
-	const mtlLoader = new THREE.MTLLoader()
+	return new Promise(function(resolve, reject){
+		const mtlLoader = new THREE.MTLLoader()
 		//mtlLoader.setPath(baseURL)
 		const mtlName = geometry.split('.')[geometry.split(':').length - 1] + '.mtl'
 		mtlLoader.load('obj/kitchen.mtl', (materials) => {
