@@ -361,7 +361,6 @@ function loadGLTF(url){
 function loadObj(baseURL, geometry){
 	return new Promise(function(resolve, reject){
 		let objLoader = new THREE.OBJLoader()
-			//objLoader.setMaterials(materials)
 			objLoader.setPath(baseURL)
 			objLoader.load(geometry, (obj) => {
 				resolve(obj)
