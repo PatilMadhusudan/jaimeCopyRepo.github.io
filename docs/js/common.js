@@ -359,15 +359,21 @@ function loadGLTF(url){
 }
 
 function loadObj(baseURL, geometry){
-	return new Promise(function(resolve, reject){
-		let objLoader = new THREE.OBJLoader()
-			objLoader.setPath(baseURL)
-			objLoader.load(geometry, (obj) => {
+	const mtlLoader = new THREE.MTLLoader()
+		//mtlLoader.setPath(baseURL)
+		const mtlName = geometry.split('.')[geometry.split(':').length - 1] + '.mtl'
+		mtlLoader.load('obj/kitchen.mtl', (materials) => {
+			materials.preload()
+			let objLoader = new THREE.OBJLoader()
+			objLoader.setMaterials(materials)
+			//objLoader.setPath(baseURL)
+			objLoader.load('obj/kitchen.obj', (obj) => {
 				resolve(obj)
 			}, () => {} , (...params) => {
 				console.error('Failed to load obj', ...params)
 				reject(...params)
 			})
+		})
 	})
 }
 
