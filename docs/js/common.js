@@ -363,7 +363,7 @@ function loadObj(baseURL, geometry){
 		const mtlLoader = new THREE.MTLLoader()
 		mtlLoader.setPath(baseURL)
 		const mtlName = geometry.split('.')[geometry.split(':').length - 1] + '.mtl'
-		mtlLoader.load(mtlName, (materials) => {
+		mtlLoader.load('kitchen.mtl', (materials) => {
 			materials.preload()
 			let objLoader = new THREE.OBJLoader()
 			objLoader.setMaterials(materials)
