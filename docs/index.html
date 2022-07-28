@@ -62,8 +62,8 @@
                     this.floorGroup.add(box)
 
                     // Add the obj
-                    loadObj('obj/','objcube.obj').then(object => {
-                        object.scale.set(100, 100, 100);
+                    loadObj('obj/','kitchen.obj').then(object => {
+                        object.scale.set(100, 1, 1);
                         object.position.set(0, 0, -5);
                         this.floorGroup.add(object)
                     }).catch((...params) =>{
