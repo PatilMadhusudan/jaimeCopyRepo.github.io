@@ -361,14 +361,14 @@ function loadGLTF(url){
 function loadObj(baseURL, geometry){
 	return new Promise(function(resolve, reject){
 		const mtlLoader = new THREE.MTLLoader()
-		mtlLoader.setPath('https://threejs.org/examples/models/obj/walt/')
+		mtlLoader.setPath(baseURL)
 		const mtlName = geometry.split('.')[geometry.split(':').length - 1] + '.mtl'
-		mtlLoader.load('WaltHead.mtl', (materials) => {
+		mtlLoader.load(mtlName, (materials) => {
 			materials.preload()
 			let objLoader = new THREE.OBJLoader()
 			objLoader.setMaterials(materials)
-			objLoader.setPath('https://threejs.org/examples/models/obj/walt/')
-			objLoader.load('WaltHead.obj', (obj) => {
+			objLoader.setPath(baseURL)
+			objLoader.load(geometry, (obj) => {
 				resolve(obj)
 			}, () => {} , (...params) => {
 				console.error('Failed to load obj', ...params)
